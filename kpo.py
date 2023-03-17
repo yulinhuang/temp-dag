@@ -6,6 +6,7 @@ from airflow import DAG
 
 # Operators; we need this to operate!
 from airflow.operators.bash import BashOperator
+from airflow.operators.python import PythonOperator
 from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
 
 with DAG(
@@ -50,6 +51,14 @@ with DAG(
     This is a documentation placed anywhere
     """  # otherwise, type it like this
 
+    def hello_world():
+        print("Hello world!")
+
+    t3 = PythonOperator(
+        task_id="hello-world",
+        python_callable=hello_world,
+    )
+
     t4 = KubernetesPodOperator(
         namespace='airflow',
         image="hello-world",
@@ -57,7 +66,7 @@ with DAG(
         task_id="hello-world",
     )
 
-    t1 >> t4
+    t1 >> t4 >> t3
 
 if __name__ == "__main__":
     dag.test()
