@@ -55,7 +55,7 @@ with DAG(
         print("Hello world!")
 
     t3 = PythonOperator(
-        task_id="hello-world",
+        task_id="hello-world-python",
         python_callable=hello_world,
     )
 
