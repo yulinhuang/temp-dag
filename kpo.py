@@ -6,8 +6,10 @@ from airflow import DAG
 
 # Operators; we need this to operate!
 from airflow.operators.bash import BashOperator
+from airflow.providers.cncf.kubernetes.operators.kubernetes_pod import KubernetesPodOperator
+
 with DAG(
-    'tutorial',
+    'kpo-test',
     # These args will get passed on to each operator
     # You can override them on a per-task basis during operator initialization
     default_args={
@@ -30,7 +32,7 @@ with DAG(
         # 'sla_miss_callback': yet_another_function,
         # 'trigger_rule': 'all_success'
     },
-    description='A simple tutorial DAG',
+    description='A simple test for KubernetesPodOperator',
     schedule=timedelta(days=1),
     start_date=datetime(2021, 1, 1),
     catchup=False,
@@ -43,44 +45,19 @@ with DAG(
         bash_command='date',
     )
 
-    t2 = BashOperator(
-        task_id='sleep',
-        depends_on_past=False,
-        bash_command='sleep 5',
-        retries=3,
-    )
-    t1.doc_md = dedent(
-        """\
-    #### Task Documentation
-    You can document your task using the attributes `doc_md` (markdown),
-    `doc` (plain text), `doc_rst`, `doc_json`, `doc_yaml` which gets
-    rendered in the UI's Task Instance Details page.
-    ![img](http://montcs.bloomu.edu/~bobmon/Semesters/2012-01/491/import%20soul.png)
-    **Image Credit:** Randall Munroe, [XKCD](https://xkcd.com/license.html)
-    """
-    )
-
     dag.doc_md = __doc__  # providing that you have a docstring at the beginning of the DAG; OR
     dag.doc_md = """
     This is a documentation placed anywhere
     """  # otherwise, type it like this
-    templated_command = dedent(
-        """
-    {% for i in range(5) %}
-        echo "{{ ds }}"
-        echo "{{ macros.ds_add(ds, 7)}}"
-        echo "{{ macros.ds_add(ds, -7)}}"
-    {% endfor %}
-    """
+
+    t4 = KubernetesPodOperator(
+        namespace='airflow',
+        image="hello-world",
+        name="hello-world",
+        task_id="hello-world",
     )
 
-    t3 = BashOperator(
-        task_id='templated',
-        depends_on_past=False,
-        bash_command=templated_command,
-    )
-
-    t1 >> [t2, t3]
+    t1 >> t4
 
 if __name__ == "__main__":
     dag.test()
