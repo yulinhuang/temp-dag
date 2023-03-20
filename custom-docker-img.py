@@ -55,7 +55,7 @@ with DAG(
 
     t4 = KubernetesPodOperator(
         namespace='airflow',
-        image="my-image-for-airflow:1.0.0",
+        image="my-image-for-airflow:1.0.1",
         name="my-image-for-airflow",
         task_id="my-image-for-airflow",
     )
