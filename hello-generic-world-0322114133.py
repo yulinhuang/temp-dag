@@ -23,7 +23,7 @@ A generic pipeline tutorial
 
 op_bb889c69_b23a_484e_8fb3_e69309f38a98 = KubernetesPodOperator(
     name="Load_weather_data",
-    namespace="default",
+    namespace="airflow",
     image="amancevice/pandas@sha256:f74bef70689b19d3cd610ef67227fce1c9a6ed8fa950ac2aff39ce72310d5520",
     cmds=["sh", "-c"],
     arguments=[
