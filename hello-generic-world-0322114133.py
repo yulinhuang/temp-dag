@@ -38,14 +38,6 @@ op_bb889c69_b23a_484e_8fb3_e69309f38a98 = KubernetesPodOperator(
         "ELYRA_ENABLE_PIPELINE_INFO": "True",
         "ELYRA_RUN_NAME": "hello-generic-world-{{ ts_nodash }}",
     },
-    volumes=[],
-    volume_mounts=[],
-    secrets=[],
-    annotations={},
-    labels={},
-    tolerations=[],
-    in_cluster=True,
-    config_file=None,
     dag=dag,
 )
 
