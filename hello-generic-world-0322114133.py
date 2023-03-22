@@ -50,7 +50,7 @@ op_bb889c69_b23a_484e_8fb3_e69309f38a98.doc = """
 
 op_8c96e288_4461_4d7e_8e0d_353c1fdb0c8c = KubernetesPodOperator(
     name="Part_1___Data_Cleaning",
-    namespace="default",
+    namespace="airflow",
     image="amancevice/pandas@sha256:f74bef70689b19d3cd610ef67227fce1c9a6ed8fa950ac2aff39ce72310d5520",
     cmds=["sh", "-c"],
     arguments=[
@@ -86,7 +86,7 @@ op_8c96e288_4461_4d7e_8e0d_353c1fdb0c8c << op_bb889c69_b23a_484e_8fb3_e69309f38a
 
 op_dcf486ef_2d73_4306_a3ca_af720a1f8eb3 = KubernetesPodOperator(
     name="Part_2___Data_Analysis",
-    namespace="default",
+    namespace="airflow",
     image="amancevice/pandas@sha256:f74bef70689b19d3cd610ef67227fce1c9a6ed8fa950ac2aff39ce72310d5520",
     cmds=["sh", "-c"],
     arguments=[
@@ -122,7 +122,7 @@ op_dcf486ef_2d73_4306_a3ca_af720a1f8eb3 << op_8c96e288_4461_4d7e_8e0d_353c1fdb0c
 
 op_1e4b1763_337e_4f84_ae9c_a6cc79a1b7eb = KubernetesPodOperator(
     name="Part_3___Time_Series_Forecasting",
-    namespace="default",
+    namespace="airflow",
     image="amancevice/pandas@sha256:f74bef70689b19d3cd610ef67227fce1c9a6ed8fa950ac2aff39ce72310d5520",
     cmds=["sh", "-c"],
     arguments=[
