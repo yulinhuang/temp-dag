@@ -1,38 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Codespaces
-Marketplace
-Explore
- 
-@yulinhuang 
-apache
-/
-airflow
-Public
-Fork your own copy of apache/airflow
-Code
-Issues
-703
-Pull requests
-155
-Discussions
-Actions
-Projects
-12
-Security
-Insights
-airflow/tests/system/providers/docker/example_docker.py /
-@dstandish
-dstandish Enable string normalization in python formatting (other) (#27206)
-Latest commit bfcae34 on Oct 24, 2022
- History
- 3 contributors
-@dstandish@Bowrna@potiuk
-65 lines (57 sloc)  2.05 KB
- 
-
 #
 # Licensed to the Apache Software Foundation (ASF) under one
 # or more contributor license agreements.  See the NOTICE file
@@ -73,7 +38,7 @@ with models.DAG(
     t2 = BashOperator(task_id="sleep", bash_command="sleep 5", retries=3, dag=dag)
     # [START howto_operator_docker]
     t3 = DockerOperator(
-        docker_url="unix://var/run/docker.sock",  # Set your docker URL
+        docker_url="/var/run/docker.sock",  # Set your docker URL
         command="/bin/sleep 30",
         image="centos:latest",
         network_mode="bridge",
