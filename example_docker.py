@@ -38,7 +38,7 @@ with models.DAG(
     t2 = BashOperator(task_id="sleep", bash_command="sleep 5", retries=3, dag=dag)
     # [START howto_operator_docker]
     t3 = DockerOperator(
-        docker_url="/var/run/docker.sock",  # Set your docker URL
+        docker_url="unix://var/run/docker.sock",  # Set your docker URL
         command="/bin/sleep 30",
         image="centos:latest",
         network_mode="bridge",
