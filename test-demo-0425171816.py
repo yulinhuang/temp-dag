@@ -22,7 +22,7 @@ Created with Elyra 3.15.0.dev0 pipeline editor using `untitled.pipeline`.
 # Operator source: examples/pipelines/setup_validation/python_notebook.ipynb
 
 op_03bfb9eb_5953_4bd3_88ed_b8c0a69c15bd = DockerOperator(
-    name="python_notebook",
+    task_id="python_notebook",
     image="amancevice/pandas@sha256:f74bef70689b19d3cd610ef67227fce1c9a6ed8fa950ac2aff39ce72310d5520",
     docker_url="tcp://dind:2375",
     command=[
@@ -47,7 +47,7 @@ op_03bfb9eb_5953_4bd3_88ed_b8c0a69c15bd = DockerOperator(
 # Operator source: examples/pipelines/setup_validation/python_script.py
 
 op_7bb27a36_deab_4f55_88dd_667d10117a0b = DockerOperator(
-    name="python_script",
+    task_id="python_script",
     image="amancevice/pandas@sha256:f74bef70689b19d3cd610ef67227fce1c9a6ed8fa950ac2aff39ce72310d5520",
     docker_url="tcp://dind:2375",
     command=[
